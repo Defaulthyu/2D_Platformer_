@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
   - Finsh
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

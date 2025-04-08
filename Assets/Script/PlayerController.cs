@@ -5,26 +5,34 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Animator myAnimator;
-    public int speed = 5;
-    private Rigidbody2D rb;
+    public float movespeed = 5f;
+    public float jumpforce = 5f;
+    public LayerMask groundLayer;
+    public Transform groundCheck;
 
-    void Start()
+    private Rigidbody2D rb;
+    private bool isGrounded;
+
+    private void Awake()
     {
         //myAnimator.SetBool("Move", false);
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        float direction = Input.GetAxis("Horizontal");
+        float moveInput = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(moveInput * movespeed, rb.velocity.y);
 
-        if (direction > 0)
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+
+        if (moveInput > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
             myAnimator.SetBool("Move", true);
         }
 
-        else if (direction < 0)
+        else if (moveInput < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             myAnimator.SetBool("Move", true);
@@ -32,12 +40,12 @@ public class PlayerController : MonoBehaviour
         else
             myAnimator.SetBool("Move", false);
 
-        transform.Translate(Vector3.right * direction * speed * Time.deltaTime);
+        //transform.Translate(Vector3.right * moveInput * movespeed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
 
-            rb.AddForce(Vector2.up * 300);
+            rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
         }
     }
 
