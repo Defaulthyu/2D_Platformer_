@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * movespeed, rb.velocity.y);
 
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
         if (moveInput > 0)
         {
@@ -42,16 +41,33 @@ public class PlayerController : MonoBehaviour
 
         //transform.Translate(Vector3.right * moveInput * movespeed * Time.deltaTime);
 
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+
+
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
 
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
         }
+
+        myAnimator.SetBool("Jump", !isGrounded);
+
+
     }
+
+        private void OnDrawGizmosSelected()
+    {
+        if (groundCheck == null) return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
+    }
+}
+
+
 
  //   private void OnTriggerEnter2D(Collider2D collision)
  //   {
  //       UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene_" + collision.name);
  //   }
-}
+
 
