@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -61,13 +62,18 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Respawn"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if (collision.CompareTag("Finish"))
+        {
+            collision.GetComponent<LevelObject>().MoveToNextLevel();
+        }
+    }
 }
-
-
-
- //   private void OnTriggerEnter2D(Collider2D collision)
- //   {
- //       UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene_" + collision.name);
- //   }
 
 
