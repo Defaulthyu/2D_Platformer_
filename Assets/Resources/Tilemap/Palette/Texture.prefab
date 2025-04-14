@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 97961457852974687}
   - component: {fileID: 7788051683923403441}
   m_Layer: 0
-  m_Name: Soil
+  m_Name: Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
