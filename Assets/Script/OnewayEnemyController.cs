@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OnewayEnemyController : MonoBehaviour
 {
     public float movespeed = 3f;
-    public Transform rootTransform; // 반전시킬 자식 오브젝트
+    public Transform rootTransform; 
+    public Transform flipTarget;    
 
     private Rigidbody2D rb;
     private bool isMovingRight = true;
@@ -13,16 +12,20 @@ public class OnewayEnemyController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (flipTarget == null)
+            flipTarget = this.transform; 
     }
 
     private void Update()
     {
-        if (isMovingRight)
-            rb.velocity = new Vector2(movespeed, rb.velocity.y);
-        else
-            rb.velocity = new Vector2(-movespeed, rb.velocity.y);
+        // 이동 처리
+        float moveDirection = isMovingRight ? 1f : -1f;
+        rb.velocity = new Vector2(moveDirection * movespeed, rb.velocity.y);
 
-
+        // flipTarget (Skull)을 좌우 반전
+        Vector3 scale = flipTarget.localScale;
+        scale.x = isMovingRight ? 1f : -1f;
+        flipTarget.localScale = scale;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
