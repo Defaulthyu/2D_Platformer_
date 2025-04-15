@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
 
+    private int jumpCount = 0;
+    private bool hasSpring = false;
+
     private void Awake()
     {
         //myAnimator.SetBool("Move", false);
@@ -40,15 +43,25 @@ public class PlayerController : MonoBehaviour
         else
             myAnimator.SetBool("Move", false);
 
+        bool wasGrounded = isGrounded;
+        
+
         //transform.Translate(Vector3.right * moveInput * movespeed * Time.deltaTime);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
-
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        if(!wasGrounded && isGrounded)
         {
+            jumpCount = 0;
+        }
 
+        int maxJump = hasSpring ? 2 : 1;
+
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJump)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+            jumpCount++;
         }
 
         myAnimator.SetBool("Jump", !isGrounded);
@@ -76,6 +89,13 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        if(collision.CompareTag("Spring"))
+        {
+            Debug.Log("½ºÇÁ¸µ È¹µæ");
+            hasSpring = true;
+            jumpCount = 0;
+            Destroy(collision.gameObject);
         }
     }
 }
