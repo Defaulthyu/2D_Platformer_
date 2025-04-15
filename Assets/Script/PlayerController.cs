@@ -86,10 +86,6 @@ public class PlayerController : MonoBehaviour
         {
             collision.GetComponent<LevelObject>().MoveToNextLevel();
         }
-        if (collision.CompareTag("Enemy"))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
         if(collision.CompareTag("Spring"))
         {
             Debug.Log("½ºÇÁ¸µ È¹µæ");

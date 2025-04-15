@@ -20493,6 +20493,7 @@ GameObject:
   - component: {fileID: 1431636935}
   - component: {fileID: 1431636937}
   - component: {fileID: 1431636938}
+  - component: {fileID: 1431636939}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -20598,6 +20599,20 @@ CapsuleCollider2D:
   m_Offset: {x: -0.009142666, y: -0.25641236}
   m_Size: {x: 0.8033207, y: 1.9366527}
   m_Direction: 0
+--- !u!114 &1431636939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431636933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a543aaf1e6a71b54eb454ddb3286e3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 3
+  currentLives: 0
 --- !u!1 &1647160681
 GameObject:
   m_ObjectHideFlags: 0
@@ -20980,7 +20995,7 @@ GameObject:
   - component: {fileID: 2136105159}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Respawn
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21091,7 +21106,7 @@ Transform:
   m_GameObject: {fileID: 2136105158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23, y: -11.4, z: 0}
+  m_LocalPosition: {x: 23.2, y: -5.3, z: 0}
   m_LocalScale: {x: 88.79794, y: 1.3889, z: 1.3889}
   m_ConstrainProportionsScale: 0
   m_Children: []

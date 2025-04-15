@@ -10,6 +10,7 @@ TagManager:
   - Spring
   - Arrow
   - Lava
+  - Skeleton
   layers:
   - Default
   - TransparentFX

@@ -7,27 +7,24 @@ public class PlayerHealth : MonoBehaviour
     public int maxLives = 3;
     public int currentLives;
 
-    public float invincibleTime = 1.0f;
-    public bool isInvincible = false;
-
     private Animator animator;
     private bool isDead = false;
 
     void Start()
     {
         currentLives = maxLives;
-        animator = GetComponentInChildren<Animator>(); // 루트 하위에 애니메이터가 있는 경우
+        animator = GetComponentInChildren<Animator>(); // 루트 하위에 애니메이터 있는 경우
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (isDead) return;
 
-        if (other.CompareTag("Arrow") || !isInvincible)
+        //  화살 맞음
+        if (other.CompareTag("Arrow"))
         {
             currentLives--;
-            Destroy(other.gameObject);
-            StartCoroutine(Invincibility());
+            Destroy(other.gameObject); // 화살 제거
 
             if (currentLives <= 0)
             {
@@ -35,17 +32,17 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
+        // 용암 닿음
         if (other.CompareTag("Lava"))
         {
             DieByLava();
         }
-    }
 
-    IEnumerator Invincibility()
-    {
-        isInvincible = true;
-        yield return new WaitForSeconds(invincibleTime);
-        isInvincible = false;
+        if (other.CompareTag("Skeleton"))
+        {
+            DieBySkeleton();
+        }
+
     }
 
     void DieByArrow()
@@ -54,36 +51,39 @@ public class PlayerHealth : MonoBehaviour
         {
             animator.SetTrigger("DieByArrow");
         }
-        else
-        {
-            Debug.LogWarning("Animator component not found.");
-        }
 
         DisablePlayer();
-        Invoke("RestartGame", 2.5f); // 애니메이션 재생 시간만큼 여유를 줘
+        Invoke("RestartGame", 2.5f);
     }
 
     void DieByLava()
     {
-        if (isDead) return; // 두 번 죽지 않도록
+        if (isDead) return;
 
         if (animator != null)
         {
             animator.SetTrigger("DieByLava");
         }
-        else
-        {
-            Debug.LogWarning("Animator component not found.");
-        }
 
         DisablePlayer();
-        Invoke("RestartGame", 0.49f); // Lava 애니메이션 시간만큼 조절
+        Invoke("RestartGame", 0.49f);
+    }
+
+    void DieBySkeleton()
+    {
+        if (isDead) return;
+        if (animator != null)
+        {
+            animator.SetTrigger("DieBySkeleton");
+        }
+        DisablePlayer();
+        Invoke("RestartGame", 0.49f);
     }
 
     void DisablePlayer()
     {
         isDead = true;
-        GetComponent<PlayerController>().enabled = false; // 움직임 차단
+        GetComponent<PlayerController>().enabled = false;
     }
 
     void RestartGame()
