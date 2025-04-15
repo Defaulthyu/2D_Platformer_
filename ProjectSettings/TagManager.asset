@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Obstacle
   - Spring
+  - Arrow
+  - Lava
   layers:
   - Default
   - TransparentFX
