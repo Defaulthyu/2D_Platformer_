@@ -12,6 +12,7 @@ TagManager:
   - Lava
   - Skeleton
   - Fire
+  - JumpSpring
   layers:
   - Default
   - TransparentFX

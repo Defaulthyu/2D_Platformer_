@@ -17,10 +17,25 @@ public class PlayerController : MonoBehaviour
     private int jumpCount = 0;
     private bool hasSpring = false;
 
+    private float originalJumpForce;
+
     private void Awake()
     {
+        originalJumpForce = jumpforce;
         //myAnimator.SetBool("Move", false);
         rb = GetComponent<Rigidbody2D>();
+    }
+    public void ApplyJumpBoost(float BoostAmount, float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(JumpBoostRoutine(BoostAmount, duration));
+    }
+
+    IEnumerator JumpBoostRoutine(float BoostAmount, float duration)
+    {
+        jumpforce = BoostAmount;
+        yield return new WaitForSeconds(duration);
+        jumpforce = originalJumpForce;
     }
 
     private void Update()
