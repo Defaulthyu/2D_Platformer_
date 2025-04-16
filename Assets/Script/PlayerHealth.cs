@@ -77,7 +77,7 @@ public class PlayerHealth : MonoBehaviour
             animator.SetTrigger("DieBySkeleton");
         }
         DisablePlayer();
-        Invoke("RestartGame", 0.49f);
+        Invoke("RestartGame", 1.21f);
     }
 
     void DisablePlayer()

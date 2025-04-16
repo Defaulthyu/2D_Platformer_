@@ -4796,8 +4796,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLives: 3
   currentLives: 0
-  invincibleTime: 1
-  isInvincible: 1
 --- !u!1 &1552961963
 GameObject:
   m_ObjectHideFlags: 0
@@ -4814,7 +4812,7 @@ GameObject:
   - component: {fileID: 1552961969}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
