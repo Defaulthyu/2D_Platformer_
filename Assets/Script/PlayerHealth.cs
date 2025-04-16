@@ -42,6 +42,10 @@ public class PlayerHealth : MonoBehaviour
         {
             DieBySkeleton();
         }
+        if (other.CompareTag("Fire"))
+        {
+            DieByFire();
+        }
 
     }
 
@@ -78,6 +82,19 @@ public class PlayerHealth : MonoBehaviour
         }
         DisablePlayer();
         Invoke("RestartGame", 1.21f);
+    }
+
+    void DieByFire()
+    {
+        if (isDead) return;
+
+        if (animator != null)
+        {
+            animator.SetTrigger("DieByFire");
+        }
+
+        DisablePlayer();
+        Invoke("RestartGame", 0.49f);
     }
 
     void DisablePlayer()

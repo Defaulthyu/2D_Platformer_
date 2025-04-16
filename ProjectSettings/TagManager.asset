@@ -11,6 +11,7 @@ TagManager:
   - Arrow
   - Lava
   - Skeleton
+  - Fire
   layers:
   - Default
   - TransparentFX
