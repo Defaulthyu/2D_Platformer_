@@ -16,7 +16,7 @@ public class Arrow : MonoBehaviour
             // TODO: 플레이어 데미지 주기
             Debug.Log("플레이어 맞음!");
         }
-        else if (collision.CompareTag("Obstacle") || collision.CompareTag("Ground"))
+        else if (collision.CompareTag("Obstacle"))
         {
             Destroy(gameObject);
         }
