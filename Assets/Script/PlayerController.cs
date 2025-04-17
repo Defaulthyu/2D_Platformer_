@@ -38,6 +38,23 @@ public class PlayerController : MonoBehaviour
         jumpforce = originalJumpForce;
     }
 
+    public void BoostMoveSpeed(float boostAmount, float duration)
+    {
+        StartCoroutine(SpeedBoost(boostAmount, duration));
+    }
+
+    IEnumerator SpeedBoost(float boostAmount, float duration)
+    {
+        float originalSpeed = movespeed;
+        float originalAnimspeed = myAnimator.speed;
+
+        movespeed *= boostAmount;
+        myAnimator.speed *= boostAmount;
+        yield return new WaitForSeconds(duration);
+        movespeed = originalSpeed;
+        myAnimator.speed = originalAnimspeed;
+    }
+
     private void Update()
     {
         float moveInput = Input.GetAxis("Horizontal");
