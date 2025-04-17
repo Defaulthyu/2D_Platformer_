@@ -27,16 +27,16 @@ public class Health : MonoBehaviour
         }
         if (other.CompareTag("Lava"))
         {
-            hp1.SetActive(false);
-            hp2.SetActive(false);
             hp3.SetActive(false);
+            hp2.SetActive(false);
+            hp1.SetActive(false);
         }
 
         if (other.CompareTag("Skeleton"))
         {
-            hp1.SetActive(false);
-            hp2.SetActive(false);
             hp3.SetActive(false);
+            hp2.SetActive(false);
+            hp1.SetActive(false);
         }
 
         if (other.CompareTag("Fire"))
