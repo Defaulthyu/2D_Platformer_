@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +20,27 @@ public class PlayerController : MonoBehaviour
     private bool hasSpring = false;
 
     private float originalJumpForce;
+
+    public Image Spring;
+    public Image JumpBoostImage;
+    public Image SpeedBoostImage;
+    public TMP_Text JumpBoostTimerText;
+    public TMP_Text SpeedBoostTimerText;
+
+    private void Start()
+    {
+        if (Spring != null)
+            Spring.enabled = false;
+        if (JumpBoostImage != null)
+            JumpBoostImage.enabled = false;
+        if (SpeedBoostImage != null)
+            SpeedBoostImage.enabled = false;
+        if (JumpBoostTimerText != null)
+            JumpBoostTimerText.gameObject.SetActive(false);
+        if (SpeedBoostTimerText != null)
+            SpeedBoostTimerText.gameObject.SetActive(false);
+
+    }
 
     private void Awake()
     {
@@ -101,6 +124,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void spring()
+    {
+        
+        if (Spring != null)
+        Spring.enabled = true;
+
+
+    }
+
         private void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
@@ -124,6 +156,7 @@ public class PlayerController : MonoBehaviour
             hasSpring = true;
             jumpCount = 0;
             Destroy(collision.gameObject);
+            spring();
         }
     }
 }

@@ -13,13 +13,6 @@ public class SpeedBoostItem : MonoBehaviour
     public Image speedBoostImage; // UI에서 속도 증가 아이콘을 표시할 이미지
     public TMP_Text speedBoostTimerText;
 
-    private void Start()
-    {
-        if (speedBoostImage != null)
-            speedBoostImage.enabled = false;
-        if (speedBoostTimerText != null)
-            speedBoostTimerText.gameObject.SetActive(false);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

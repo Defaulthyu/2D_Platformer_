@@ -13,13 +13,7 @@ public class JumpBoostItem : MonoBehaviour
     public Image jumpBoostImage; // UI에서 점프 증가 아이콘을 표시할 이미지
     public TMP_Text jumpBoostTimerText;
 
-    private void Start()
-    {
-        if (jumpBoostImage != null)
-            jumpBoostImage.enabled = false;
-        if (jumpBoostTimerText != null)
-            jumpBoostTimerText.gameObject.SetActive(false);
-    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
