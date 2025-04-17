@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator;
     private bool isDead = false;
 
+    public bool isInvincible = false;
+
     void Start()
     {
         currentLives = maxLives;
@@ -23,30 +25,56 @@ public class PlayerHealth : MonoBehaviour
         //  화살 맞음
         if (other.CompareTag("Arrow"))
         {
-            currentLives--;
-            Destroy(other.gameObject); // 화살 제거
-
-            if (currentLives <= 0)
+            if (!isInvincible)
             {
-                DieByArrow();
+                currentLives--;
+                Destroy(other.gameObject); // 화살 제거
+
+                if (currentLives <= 0)
+                {
+                    DieByArrow();
+                }
             }
+            else
+            {
+                Destroy(other.gameObject); // 화살 제거
+            }
+
         }
 
         // 용암 닿음
-        if (other.CompareTag("Lava"))
+        else if (other.CompareTag("Lava"))
         {
             DieByLava();
         }
 
-        if (other.CompareTag("Skeleton"))
+        else if (other.CompareTag("Skeleton"))
         {
-            DieBySkeleton();
+            if(!isInvincible)
+            {
+                DieBySkeleton();
+            }
         }
-        if (other.CompareTag("Fire"))
+        else if (other.CompareTag("Fire"))
         {
-            DieByFire();
+            if(!isInvincible)
+            {
+                DieByFire();
+            }
         }
 
+    }
+
+    public void ActivateInvincibility(float duration)
+    {
+        StartCoroutine(InvincibilityCoroutine(duration));
+    }
+
+    private IEnumerator InvincibilityCoroutine(float duration)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
     }
 
     void DieByArrow()
@@ -70,7 +98,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         DisablePlayer();
-        Invoke("RestartGame", 0.49f);
+        Invoke("RestartGame", 0.5f);
     }
 
     void DieBySkeleton()
@@ -81,7 +109,7 @@ public class PlayerHealth : MonoBehaviour
             animator.SetTrigger("DieBySkeleton");
         }
         DisablePlayer();
-        Invoke("RestartGame", 1.21f);
+        Invoke("RestartGame", 3f);
     }
 
     void DieByFire()
@@ -94,7 +122,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         DisablePlayer();
-        Invoke("RestartGame", 0.49f);
+        Invoke("RestartGame", 1f);
     }
 
     void DisablePlayer()
