@@ -7,22 +7,33 @@ public class Health : MonoBehaviour
     public GameObject hp1;
     public GameObject hp2;
     public GameObject hp3;
+    public PlayerHealth playerhealth;
 
+    private void Awake()
+    {
+        if(playerhealth == null)
+        {
+            playerhealth = FindObjectOfType<PlayerHealth>();
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Arrow"))
         {
-            if (hp3.activeSelf == true)
+            if (!playerhealth.isInvincible)
             {
-                hp3.SetActive(false);
-            }
-            else if (hp2.activeSelf == true)
-            {
-                hp2.SetActive(false);
-            }
-            else if (hp1.activeSelf == true)
-            {
-                hp1.SetActive(false);
+                if (hp3.activeSelf == true)
+                {
+                    hp3.SetActive(false);
+                }
+                else if (hp2.activeSelf == true)
+                {
+                    hp2.SetActive(false);
+                }
+                else if (hp1.activeSelf == true)
+                {
+                    hp1.SetActive(false);
+                }
             }
         }
         if (other.CompareTag("Lava"))
@@ -47,20 +58,21 @@ public class Health : MonoBehaviour
         }
         if(other.CompareTag("Trap"))
         {
-            if (hp3.activeSelf == true)
+            if(!playerhealth.isInvincible)
             {
-                hp3.SetActive(false);
-            }
-            else if (hp2.activeSelf == true)
-            {
-                hp2.SetActive(false);
-            }
-            else if (hp1.activeSelf == true)
-            {
-                hp1.SetActive(false);
+                if (hp3.activeSelf == true)
+                {
+                    hp3.SetActive(false);
+                }
+                else if (hp2.activeSelf == true)
+                {
+                    hp2.SetActive(false);
+                }
+                else if (hp1.activeSelf == true)
+                {
+                    hp1.SetActive(false);
+                }
             }
         }
-
-
     }
 }
