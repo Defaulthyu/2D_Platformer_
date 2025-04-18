@@ -112,7 +112,7 @@ public class PlayerHealth : MonoBehaviour
             animator.SetTrigger("DieByLava");
         }
 
-        DisablePlayer();
+        DisablePlayer2();
         Invoke("RestartGame", 0.5f);
     }
 
@@ -136,7 +136,7 @@ public class PlayerHealth : MonoBehaviour
             animator.SetTrigger("DieByFire");
         }
 
-        DisablePlayer();
+        DisablePlayer2();
         Invoke("RestartGame", 1f);
     }
 
@@ -144,10 +144,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead) return;
         
-        if (currentLives <= 0)
-        {
-            RestartGame();
-        }
+
         else
         
 
@@ -155,6 +152,11 @@ public class PlayerHealth : MonoBehaviour
         DisablePlayer();
         Invoke("EnablePlayer", 1f);
         Invoke("Move", 1f);
+
+        if (currentLives <= 0)
+        {
+            Invoke("RestartGame", 1f);
+        }
 
     }
 
@@ -175,7 +177,21 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
-    void RestartGame()
+    void EnablePlayer2()
+    {
+        isDead = false;
+        GetComponent<PlayerController>().enabled = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    void DisablePlayer2()
+    {
+        isDead = true;
+        GetComponent<PlayerController>().enabled = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+    }
+
+        void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
