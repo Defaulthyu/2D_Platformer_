@@ -45,6 +45,21 @@ public class Health : MonoBehaviour
             hp2.SetActive(false);
             hp3.SetActive(false);
         }
+        if(other.CompareTag("Trap"))
+        {
+            if (hp3.activeSelf == true)
+            {
+                hp3.SetActive(false);
+            }
+            else if (hp2.activeSelf == true)
+            {
+                hp2.SetActive(false);
+            }
+            else if (hp1.activeSelf == true)
+            {
+                hp1.SetActive(false);
+            }
+        }
 
 
     }
