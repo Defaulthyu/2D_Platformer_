@@ -166,6 +166,7 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<PlayerController>().enabled = false;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+
         
     }
 
