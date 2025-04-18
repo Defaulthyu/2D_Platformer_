@@ -96,6 +96,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (animator != null)
         {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 플레이어 속도 초기화
             animator.SetTrigger("DieByArrow");
         }
 
@@ -121,6 +122,7 @@ public class PlayerHealth : MonoBehaviour
         if (isDead) return;
         if (animator != null)
         {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 플레이어 속도 초기화
             animator.SetTrigger("DieBySkeleton");
         }
         DisablePlayer();
@@ -133,6 +135,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (animator != null)
         {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 플레이어 속도 초기화
             animator.SetTrigger("DieByFire");
         }
 
