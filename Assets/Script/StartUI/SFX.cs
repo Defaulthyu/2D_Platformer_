@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class SFX : MonoBehaviour
 {
-    public AudioSource audioSource;
-    public AudioClip buttonClick;
+    private AudioSource audioSource1;
+    private AudioSource audioSource0;
+    public AudioClip buttonClick1;
+    public AudioClip buttonClick0;
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource1 = GetComponent<AudioSource>();
+        audioSource0 = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    public void PlayButtonClick()
+    public void PlayButtonClickOpen()
     {
-        audioSource.PlayOneShot(buttonClick);
+        audioSource1.PlayOneShot(buttonClick1);
+    }
+
+    public void PlayButtonClickClose()
+    {
+        audioSource0.PlayOneShot(buttonClick0);
     }
 }
