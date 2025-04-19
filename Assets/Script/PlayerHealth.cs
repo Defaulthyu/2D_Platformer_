@@ -151,7 +151,7 @@ public class PlayerHealth : MonoBehaviour
         Invoke("RestartGame", 1f);
     }
 
-    void DieByMoai()
+    public void DieByMoai()
     {
         if (isDead) return;
         if (animator != null)

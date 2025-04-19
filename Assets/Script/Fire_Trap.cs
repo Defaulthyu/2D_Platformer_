@@ -31,4 +31,12 @@ public class Fire_Trap : MonoBehaviour
             yield return new WaitForSeconds(fireOffTime);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Moai"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

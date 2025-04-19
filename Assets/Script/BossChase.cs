@@ -7,19 +7,10 @@ public class BossChase : MonoBehaviour
     public Animator animator;
     public float chaseSpeed = 3f;
 
-    private void Start()
+    void Update()
     {
-        if (animator != null)
-            animator.SetBool("Walk", true);
-
-        if (rb != null)
-            rb.freezeRotation = true; // Z축 회전 고정
-    }
-
-    private void FixedUpdate()
-    {
-        if (rb != null)
-            rb.velocity = new Vector2(chaseSpeed, rb.velocity.y); // 무조건 달리기
+        rb.velocity = new Vector2(chaseSpeed, rb.velocity.y);
+        animator.SetBool("Walk", true); // 계속 걷기
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,18 +18,38 @@ public class BossChase : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
-
             if (tilemap != null)
             {
-                foreach (ContactPoint2D hit in collision.contacts)
+                foreach (ContactPoint2D contact in collision.contacts)
                 {
-                    Vector3 hitPos = Vector3.zero;
-                    hitPos.x = hit.point.x - 0.01f * hit.normal.x;
-                    hitPos.y = hit.point.y - 0.01f * hit.normal.y;
+                    Vector3 hitPoint = contact.point;
+                    Vector3Int cell = tilemap.WorldToCell(hitPoint);
 
-                    Vector3Int cellPosition = tilemap.WorldToCell(hitPos);
-                    tilemap.SetTile(cellPosition, null); // 타일 하나 부수기
+                    // 부딪힌 셀과 주변 8칸도 같이 부숴준다
+                    for (int x = -2; x <= 2; x++)
+                    {
+                        for (int y = -3; y <= 3; y++)
+                        {
+                            Vector3Int offsetCell = new Vector3Int(cell.x + x, cell.y + y, cell.z);
+                            if (tilemap.HasTile(offsetCell))
+                            {
+                                tilemap.SetTile(offsetCell, null);
+                            }
+                        }
+                    }
                 }
+            }
+        }
+        else if (collision.gameObject.CompareTag("Trap2"))
+        {
+            Destroy(collision.gameObject); // 함정 삭제
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.DieByMoai();
             }
         }
     }
