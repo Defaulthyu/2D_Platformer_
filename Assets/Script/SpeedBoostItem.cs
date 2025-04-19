@@ -13,6 +13,8 @@ public class SpeedBoostItem : MonoBehaviour
     public Image speedBoostImage; // UI에서 속도 증가 아이콘을 표시할 이미지
     public TMP_Text speedBoostTimerText;
 
+    public AudioClip speedBoostSound; // 속도 증가 사운드
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,6 +23,7 @@ public class SpeedBoostItem : MonoBehaviour
             PlayerController player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
+                AudioSource.PlayClipAtPoint(speedBoostSound, transform.position);
                 player.BoostMoveSpeed(boostAmount, boostDuration);
             }
 

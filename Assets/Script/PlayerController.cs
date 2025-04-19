@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text JumpBoostTimerText;
     public TMP_Text SpeedBoostTimerText;
 
+
     private void Start()
     {
         if (Spring != null)
@@ -39,7 +40,6 @@ public class PlayerController : MonoBehaviour
             JumpBoostTimerText.gameObject.SetActive(false);
         if (SpeedBoostTimerText != null)
             SpeedBoostTimerText.gameObject.SetActive(false);
-
     }
 
     private void Awake()
@@ -126,9 +126,9 @@ public class PlayerController : MonoBehaviour
 
     private void spring()
     {
-        
         if (Spring != null)
         Spring.enabled = true;
+
 
 
     }

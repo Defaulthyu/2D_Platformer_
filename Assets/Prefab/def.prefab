@@ -144,6 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invincibilityDuration: 5
-  invincibilitySound: {fileID: 0}
+  invincibilitySound: {fileID: 8300000, guid: 0c814b6d658fad34591edc9f312f2f2c, type: 3}
   invincibilityImage: {fileID: 0}
   invincibilityTimerText: {fileID: 0}

@@ -100,7 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostAmount: 9
   duration: 5
-  jumpBoostSound: {fileID: 0}
+  jumpBoostSound: {fileID: 8300000, guid: 1e29223122627bc4e89a804d225c1b1f, type: 3}
+  jumpBoostImage: {fileID: 0}
+  jumpBoostTimerText: {fileID: 0}
 --- !u!61 &489036533594369190
 BoxCollider2D:
   m_ObjectHideFlags: 0

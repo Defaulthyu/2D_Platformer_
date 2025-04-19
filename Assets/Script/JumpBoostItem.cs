@@ -25,7 +25,7 @@ public class JumpBoostItem : MonoBehaviour
             {
                 player.ApplyJumpBoost(boostAmount, duration);
 
-                //AudioSource.PlayClipAtPoint(jumpBoostSound, transform.position);                                
+                AudioSource.PlayClipAtPoint(jumpBoostSound, transform.position);                                
             }
 
             GetComponent<Collider2D>().enabled = false; // 아이템을 먹은 후 충돌체를 비활성화

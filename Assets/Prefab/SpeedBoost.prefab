@@ -100,6 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostAmount: 1.6
   boostDuration: 5
+  speedBoostImage: {fileID: 0}
+  speedBoostTimerText: {fileID: 0}
+  speedBoostSound: {fileID: 8300000, guid: 9f7d95500d5d54b45bd494a4e0e9c62f, type: 3}
 --- !u!61 &3774944316774890582
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136,7 +139,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.74}
+    oldSize: {x: 0.99, y: 0.74}
     newSize: {x: 1, y: 0.74}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

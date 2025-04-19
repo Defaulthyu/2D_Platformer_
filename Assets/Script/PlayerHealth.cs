@@ -43,6 +43,11 @@ public class PlayerHealth : MonoBehaviour
 
         }
 
+        else if (other.CompareTag("Moai"))
+        {
+            DieByMoai();
+        }
+
         // 용암 닿음
         else if (other.CompareTag("Lava"))
         {
@@ -51,14 +56,14 @@ public class PlayerHealth : MonoBehaviour
 
         else if (other.CompareTag("Skeleton"))
         {
-            if(!isInvincible)
+            if (!isInvincible)
             {
                 DieBySkeleton();
             }
         }
         else if (other.CompareTag("Fire"))
         {
-            if(!isInvincible)
+            if (!isInvincible)
             {
                 DieByFire();
             }
@@ -97,6 +102,7 @@ public class PlayerHealth : MonoBehaviour
         if (animator != null)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 플레이어 속도 초기화
+            DeathSound();
             animator.SetTrigger("DieByArrow");
         }
 
@@ -110,6 +116,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (animator != null)
         {
+            DeathSound();
             animator.SetTrigger("DieByLava");
         }
 
@@ -123,6 +130,7 @@ public class PlayerHealth : MonoBehaviour
         if (animator != null)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 플레이어 속도 초기화
+            DeathSound();
             animator.SetTrigger("DieBySkeleton");
         }
         DisablePlayer();
@@ -136,11 +144,25 @@ public class PlayerHealth : MonoBehaviour
         if (animator != null)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 플레이어 속도 초기화
+            DeathSound();
             animator.SetTrigger("DieByFire");
         }
-
         DisablePlayer2();
         Invoke("RestartGame", 1f);
+    }
+
+    void DieByMoai()
+    {
+        if (isDead) return;
+        if (animator != null)
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 플레이어 속도 초기화
+            DeathSound();
+            animator.SetTrigger("DieByMoai");
+        }
+        DisablePlayer();
+
+        Invoke("RestartGame", 1.5f);
     }
 
     void HitByTrap()
@@ -158,6 +180,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentLives <= 0)
         {
+            DeathSound();
             Invoke("RestartGame", 1f);
         }
 
@@ -171,6 +194,15 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
 
         
+    }
+
+    void DeathSound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 
     void EnablePlayer()
