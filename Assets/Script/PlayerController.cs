@@ -73,9 +73,11 @@ public class PlayerController : MonoBehaviour
 
         movespeed *= boostAmount;
         myAnimator.speed *= boostAmount;
+        Debug.Log("Speed Boosted");
         yield return new WaitForSeconds(duration);
         movespeed = originalSpeed;
         myAnimator.speed = originalAnimspeed;
+        Debug.Log("Speed Boost Ended");
     }
 
     private void Update()

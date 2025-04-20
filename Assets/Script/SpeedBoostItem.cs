@@ -25,6 +25,7 @@ public class SpeedBoostItem : MonoBehaviour
             {
                 AudioSource.PlayClipAtPoint(speedBoostSound, transform.position);
                 player.BoostMoveSpeed(boostAmount, boostDuration);
+                Debug.Log("Speed Boost Item Collected!"); // 아이템을 먹었을 때 로그 출력
             }
 
             GetComponent<Collider2D>().enabled = false; // 아이템을 먹은 후 충돌체를 비활성화

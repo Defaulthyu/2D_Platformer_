@@ -24171,6 +24171,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9062642191552711077, guid: ec9f0b1f93258cf498a2f36eb5965a3c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b1ce9fcf9baa96d40abc40128f1d5c9c, type: 3}
     - target: {fileID: 2006930211731642759, guid: ec9f0b1f93258cf498a2f36eb5965a3c, type: 3}
       propertyPath: hp1
       value: 
@@ -24183,6 +24187,10 @@ PrefabInstance:
       propertyPath: hp3
       value: 
       objectReference: {fileID: 1578884594}
+    - target: {fileID: 2006930211731642759, guid: ec9f0b1f93258cf498a2f36eb5965a3c, type: 3}
+      propertyPath: playerhealth
+      value: 
+      objectReference: {fileID: 1566897247}
     - target: {fileID: 2471228614303406460, guid: ec9f0b1f93258cf498a2f36eb5965a3c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -24257,6 +24265,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2672446302784587461, guid: ec9f0b1f93258cf498a2f36eb5965a3c, type: 3}
   m_PrefabInstance: {fileID: 1566897245}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1566897247 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 968636042355637645, guid: ec9f0b1f93258cf498a2f36eb5965a3c, type: 3}
+  m_PrefabInstance: {fileID: 1566897245}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a543aaf1e6a71b54eb454ddb3286e3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1578884593
 PrefabInstance:
   m_ObjectHideFlags: 0
