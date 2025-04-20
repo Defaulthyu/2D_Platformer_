@@ -28,7 +28,7 @@ public class BossChase : MonoBehaviour
                     // ºÎµúÈù ¼¿°ú ÁÖº¯ 8Ä­µµ °°ÀÌ ºÎ½¤ÁØ´Ù
                     for (int x = -2; x <= 2; x++)
                     {
-                        for (int y = -3; y <= 3; y++)
+                        for (int y = -5; y <= 5; y++)
                         {
                             Vector3Int offsetCell = new Vector3Int(cell.x + x, cell.y + y, cell.z);
                             if (tilemap.HasTile(offsetCell))
