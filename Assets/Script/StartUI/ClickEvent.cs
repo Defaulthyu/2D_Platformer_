@@ -17,4 +17,11 @@ public class ClickEvent : MonoBehaviour
         // Load the game scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("Stage_1");
     }
+
+    public void Reset()
+    {
+        // Reload the current scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameStart");
+    }
 }
+
