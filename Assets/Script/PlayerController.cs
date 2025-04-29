@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text JumpBoostTimerText;
     public TMP_Text SpeedBoostTimerText;
 
-
+    float score;
     private void Start()
     {
         if (Spring != null)
@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
         originalJumpForce = jumpforce;
         //myAnimator.SetBool("Move", false);
         rb = GetComponent<Rigidbody2D>();
+
+        score = 1000f;
     }
     public void ApplyJumpBoost(float BoostAmount, float duration)
     {
@@ -123,7 +125,7 @@ public class PlayerController : MonoBehaviour
 
         myAnimator.SetBool("Jump", !isGrounded);
 
-
+        score -= Time.deltaTime;
     }
 
     private void spring()
@@ -150,6 +152,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.CompareTag("Finish"))
         {
+            ScoreSys.TrySet(SceneManager.GetActiveScene().buildIndex, (int)score);
             collision.GetComponent<LevelObject>().MoveToNextLevel();
         }
         if(collision.CompareTag("Spring"))
