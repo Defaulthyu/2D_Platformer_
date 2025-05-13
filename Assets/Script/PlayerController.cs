@@ -152,7 +152,9 @@ public class PlayerController : MonoBehaviour
 
         if (collision.CompareTag("Finish"))
         {
-            ScoreSys.TrySet(SceneManager.GetActiveScene().buildIndex, (int)score);
+
+            //ScoreSys.TrySet(SceneManager.GetActiveScene().buildIndex, (int)score);
+            StageResultSaver.SaveStage(SceneManager.GetActiveScene().buildIndex, (int)score);
             collision.GetComponent<LevelObject>().MoveToNextLevel();
         }
         if(collision.CompareTag("Spring"))
