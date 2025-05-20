@@ -17,6 +17,7 @@ TagManager:
   - Tilemap
   - Moai
   - Trap2
+  - Item
   layers:
   - Default
   - TransparentFX

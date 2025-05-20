@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text JumpBoostTimerText;
     public TMP_Text SpeedBoostTimerText;
 
-    float score;
+    public float score;
     private void Start()
     {
         if (Spring != null)
@@ -164,6 +164,10 @@ public class PlayerController : MonoBehaviour
             jumpCount = 0;
             Destroy(collision.gameObject);
             spring();
+        }
+        if(collision.CompareTag("Item"))
+        {
+            score += collision.GetComponent<ItemObject>().GetPoint();
         }
     }
 }
