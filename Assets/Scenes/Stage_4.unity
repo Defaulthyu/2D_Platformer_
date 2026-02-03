@@ -43956,6 +43956,8 @@ MonoBehaviour:
   SpeedBoostImage: {fileID: 1721748376}
   JumpBoostTimerText: {fileID: 250195494}
   SpeedBoostTimerText: {fileID: 407051462}
+  score: 0
+  skinDatabase: {fileID: 11400000, guid: 8a2c6b7f7ad308e489f1c5d1e7dc2144, type: 2}
 --- !u!4 &7663928072466769922
 Transform:
   m_ObjectHideFlags: 0

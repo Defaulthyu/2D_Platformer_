@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff07c522b8a4a243b363de5a2ed03ed, type: 3}
   m_Name: NewSkin 1
   m_EditorClassIdentifier: 
-  skinName: 
-  displayIcon: {fileID: 0}
-  animatorController: {fileID: 0}
+  skinName: Suit
+  displayIcon: {fileID: 21300000, guid: 408f703bbbc1a8948adab08052464b07, type: 3}
+  animatorController: {fileID: 22100000, guid: 7f56dbe85f84ef64cb76237aafe1c724, type: 2}
